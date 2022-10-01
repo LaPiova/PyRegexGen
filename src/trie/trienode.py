@@ -12,14 +12,3 @@ class TrieNode:
 		self.val = val
 		self.next = {}
 		self.isword = isword
-
-	def dfs(self):
-		"""
-		Start DFS from a node to print all possible words in the sub-trie of this node.
-		"""
-		ret = set()
-		if self.isword:
-			ret.add(self.val)
-		for key in self.next:
-			ret = ret.union(self.next[key].dfs())
-		return ret
