@@ -3,7 +3,7 @@ class Trie:
 	"""
 	Basic class of Trie. A DFA that can represents a regular expression
 	"""
-	def __init__(self, words, forward=True, backward=False):
+	def __init__(self, words:set, forward=True, backward=False):
 		"""
 		Parameters:
 		c2t: Character to nodes. A dictionary points to all roots of tries.
