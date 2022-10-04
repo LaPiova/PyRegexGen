@@ -29,7 +29,6 @@ def dfs(node:TrieNode, target:str=None) -> set:
 	return ret
 
 # TODO:
-# Support search target str in the trie.
 # Support max layers of search.
 def bfs(node:TrieNode, target:str=None, layer:int=None) -> set:
 	"""
@@ -48,4 +47,19 @@ def bfs(node:TrieNode, target:str=None, layer:int=None) -> set:
 		for key in cur.next:
 			cont = [cur.next[key]] + cont
 	return ret
+
+def precise_search(input:str, trie:Trie, reverse=False) -> bool:
+	if reverse:
+		init = trie.c2tr
+	else:
+		init = trie.c2t
+	if not (input[0] in init):
+		return False
+	cur = init[input[0]]
+	for c in input[1:]:
+		if not (c in cur.next):
+			return False
+		cur = cur.next[c]
+	return cur.isword
+
 
