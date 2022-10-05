@@ -40,13 +40,7 @@ class TestSearchMethods(unittest.TestCase):
 
 	def test_precise_search_ignore_space(self):
 		for word in self.words:
-			try:
-				if word[0] == ' ':
-					set_trace()
-					pass
-				self.assertEqual(True, precise_search(word, self.trie_no_space, ignore_space=True))
-			except:
-				print(word, len(word), word[0], word[-1])
+			self.assertEqual(True, precise_search(word, self.trie_no_space, ignore_space=True))
 		for word in self.excl_words:
 			self.assertEqual(False, precise_search(word, self.trie, ignore_space=True))
 

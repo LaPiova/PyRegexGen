@@ -54,7 +54,7 @@ def precise_search(input:str, trie:Trie, reverse=False, ignore_space=False) -> b
 	if not (input[i] in init):
 		return False
 	cur = init[input[i]]
-	for c in input[1:]:
+	for c in input[i + 1:]:
 		if not (c in cur.next):
 			if (ignore_space and (c == ' ')):
 				continue
@@ -63,7 +63,6 @@ def precise_search(input:str, trie:Trie, reverse=False, ignore_space=False) -> b
 	return cur.isword
 
 # TODO:
-# Debug ignore space
 # Support vague search. e.g. (whether spaces should be ingored or not,
 # within which depth should search be performed,
 # within which similarity should it be considered as found.
