@@ -101,3 +101,9 @@ class Trie:
 					cur = cur.next[word[i]]
 					i -= 1
 				cur.isword = True
+
+	def update_trie(self, word, forward=True):
+		if forward:
+			self.generate_forward_trie(word)
+		else:
+			self.generate_backward_trie(word)
