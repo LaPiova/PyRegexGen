@@ -42,7 +42,12 @@ def bfs(node:TrieNode, target:str=None, layer:int=None) -> set:
 			cont = [cur.next[key]] + cont
 	return ret
 
-def precise_search(input:str, trie:Trie, reverse=False, ignore_space=False) -> bool:
+def step_search(node:TrieNode, c):
+	if c in node.next:
+		return node.next[c]
+	return None
+
+def precise_search(input:str, trie:Trie, reverse=False, ignore_space=False):
 	if reverse:
 		init = trie.c2tr
 	else:
@@ -52,19 +57,20 @@ def precise_search(input:str, trie:Trie, reverse=False, ignore_space=False) -> b
 		while input[i] == ' ':
 			i += 1
 	if not (input[i] in init):
-		return False
+		return (False, None)
 	cur = init[input[i]]
 	for c in input[i + 1:]:
 		if not (c in cur.next):
 			if (ignore_space and (c == ' ')):
 				continue
-			return False
+			return (False, cur)
 		cur = cur.next[c]
-	return cur.isword
+	return (cur.isword, cur)
+
+def vague_search(s:str, trie:Trie, reverse=False, ignore_space=False, mode=0):
+	pass
 
 # TODO:
 # Support vague search. e.g. (whether spaces should be ingored or not,
 # within which depth should search be performed,
 # within which similarity should it be considered as found.
-
-

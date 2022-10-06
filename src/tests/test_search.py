@@ -34,15 +34,19 @@ class TestSearchMethods(unittest.TestCase):
 
 	def test_precise_search(self):
 		for word in self.words:
-			self.assertEqual(True, precise_search(word, self.trie))
+			ret, node = precise_search(word, self.trie)
+			self.assertEqual(True, ret)
 		for word in self.excl_words:
-			self.assertEqual(False, precise_search(word, self.trie))
+			ret, node = precise_search(word, self.trie)
+			self.assertEqual(False, ret)
 
 	def test_precise_search_ignore_space(self):
 		for word in self.words:
-			self.assertEqual(True, precise_search(word, self.trie_no_space, ignore_space=True))
+			ret, node = precise_search(word, self.trie_no_space, ignore_space=True)
+			self.assertEqual(True, ret)
 		for word in self.excl_words:
-			self.assertEqual(False, precise_search(word, self.trie, ignore_space=True))
+			ret, node = precise_search(word, self.trie, ignore_space=True)
+			self.assertEqual(False, ret)
 
 if __name__ == '__main__':
 	unittest.main()
