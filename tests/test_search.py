@@ -1,4 +1,4 @@
-from pyregexgen.utils.search import *
+from PyRegexGen.utils.search import *
 import unittest
 from pdb import set_trace
 import time
@@ -23,7 +23,6 @@ class TestSearchMethods(unittest.TestCase):
 		self.words = set()
 		self.excl_words = set()
 		self.words_no_space = set()
-		self.bad_words = set(["bastard", "holy shit", "holyshit"])
 		for _ in range(100):
 			word = generate_random_string()
 			self.words.add(word)
@@ -50,11 +49,6 @@ class TestSearchMethods(unittest.TestCase):
 			ret, node = precise_search(word, self.trie, ignore_space=True)
 			self.assertEqual(False, ret)
 
-	def test_bad_words(self):
-		words = ["holy shit", "h ol y shi t", "holyshit"]
-		for word in words:
-			ret, node = precise_search(word, self.btrie, ignore_space=True)
-			self.assertEqual(True, ret)
 
 if __name__ == '__main__':
 	unittest.main()
