@@ -47,7 +47,7 @@ def step_search(node:TrieNode, c):
 		return node.next[c]
 	return None
 
-def precise_search(input:str, trie:Trie, reverse=False, ignore_space=False):
+def precise_search(input:str, trie:Trie, partial=False, reverse=False, ignore_space=False):
 	if reverse:
 		init = trie.c2tr
 	else:
@@ -65,6 +65,9 @@ def precise_search(input:str, trie:Trie, reverse=False, ignore_space=False):
 				continue
 			return (False, cur)
 		cur = cur.next[c]
+		if partial:
+			if cur.isword:
+				return (True, cur)
 	return (cur.isword, cur)
 
 def vague_search(s:str, trie:Trie, reverse=False, ignore_space=False, mode=0):

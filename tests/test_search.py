@@ -31,7 +31,6 @@ class TestSearchMethods(unittest.TestCase):
 		self.excl_words -= self.words
 		self.trie = Trie(self.words)
 		self.trie_no_space = Trie(self.words_no_space)
-		self.btrie = Trie(self.bad_words)
 
 	def test_precise_search(self):
 		for word in self.words:
@@ -49,6 +48,13 @@ class TestSearchMethods(unittest.TestCase):
 			ret, node = precise_search(word, self.trie, ignore_space=True)
 			self.assertEqual(False, ret)
 
+	def test_partial_precise_search(self):
+		for word in self.words:
+			ret, node = precise_search(word + "test", self.trie, partial=True)
+			self.assertEqual(True, ret)
+		for word in self.words:
+			ret, node = precise_search(word + "test", self.trie, partial=False)
+			self.assertEqual(False, ret)
 
 if __name__ == '__main__':
 	unittest.main()
