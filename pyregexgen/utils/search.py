@@ -66,6 +66,8 @@ def precise_search(input:str, trie:Trie, partial=False, reverse=False, ignore_sp
 			return (False, cur)
 		cur = cur.next[c]
 		if partial:
+			# TODO: If it stops at one word
+			# who is the prefix of another word in trie
 			if cur.isword:
 				return (True, cur)
 	return (cur.isword, cur)
