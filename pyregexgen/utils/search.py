@@ -1,5 +1,5 @@
-from trie.trienode import *
-from trie.trie import *
+from pyregexgen.trienode import *
+from pyregexgen.trie import *
 
 def dfs_rec(node:TrieNode, target:str=None, layer:int=None) -> set:
 	"""

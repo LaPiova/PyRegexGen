@@ -1,4 +1,4 @@
-from trie.trienode import *
+from pyregexgen.trienode import *
 class Trie:
 	"""
 	Basic class of Trie. A DFA that can represents a regular expression
