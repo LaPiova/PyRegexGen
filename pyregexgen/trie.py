@@ -1,9 +1,12 @@
 from PyRegexGen.trienode import *
+
+
 class Trie:
 	"""
 	Basic class of Trie. A DFA that can represents a regular expression
 	"""
-	def __init__(self, words:set, forward=True, backward=False):
+
+	def __init__(self, words: set, forward=True, backward=False):
 		"""
 		Parameters:
 		c2t: Character to nodes. A dictionary points to all roots of tries.
@@ -48,8 +51,8 @@ class Trie:
 					cur.isword = True
 			else:
 				"""
-				Root of the trie that starts with this initial character 
-				does exist in the trie-set. Generate a new trie. 
+				Root of the trie that starts with this initial character
+				does exist in the trie-set. Generate a new trie.
 				"""
 				cur = TrieNode(word[0])
 				self.c2t[word[0]] = cur
@@ -90,8 +93,8 @@ class Trie:
 					cur.isword = True
 			else:
 				"""
-				Root of the trie that starts with this initial character 
-				does exist in the trie-set. Generate a new trie. 
+				Root of the trie that starts with this initial character
+				does exist in the trie-set. Generate a new trie.
 				"""
 				cur = TrieNode(word[i])
 				self.c2tr[word[i]] = cur

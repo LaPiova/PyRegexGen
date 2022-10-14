@@ -5,11 +5,13 @@ import time
 import random
 import string
 
+
 def generate_random_string(size=15, chars=(string.ascii_uppercase + string.ascii_lowercase + " ")):
 	size = random.randint(3, size)
 	return ''.join(random.SystemRandom().choice(chars) for _ in range(size))
 
-def eliminate_space(input:str)->str:
+
+def eliminate_space(input: str) -> str:
 	ret = ""
 	for c in input:
 		if c == ' ':
@@ -17,8 +19,9 @@ def eliminate_space(input:str)->str:
 		ret += c
 	return ret
 
+
 class TestSearchMethods(unittest.TestCase):
-	
+
 	def setUp(self):
 		self.words = set()
 		self.excl_words = set()
@@ -55,6 +58,7 @@ class TestSearchMethods(unittest.TestCase):
 		for word in self.words:
 			ret, node = precise_search(word + "test", self.trie, partial=False)
 			self.assertEqual(False, ret)
+
 
 if __name__ == '__main__':
 	unittest.main()
