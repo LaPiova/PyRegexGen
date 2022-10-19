@@ -6,6 +6,8 @@ with open('requirements.txt') as f:
 		required = f.read().splitlines()
 
 setup(
+	name='PyRegexGen',
+	version='0.1',
 	author="LaPiova",
 	author_email='schrodinghauer@gmail.com',
 	install_requires=required,
@@ -13,10 +15,9 @@ setup(
 		'License :: OSI Approved :: MIT License',
 		'Programming Language :: Python :: 3.7',
 	],
-	description="Says hello",
+	packages=find_packages(),
+	description="A trie generator and search tool.",
+	python_requires=">=3.6",
 	license="MIT license",
-	include_package_data=True,
-	name='PyRegexGen',
-	version='0.1',
 	zip_safe=False,
 )
