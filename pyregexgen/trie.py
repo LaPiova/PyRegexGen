@@ -15,12 +15,16 @@ class Trie:
 		"""
 		self.c2t = {}
 		self.c2tr = {}
+		self.word_set = words
 		self.null = False
 		for word in words:
 			if forward:
 				self.generate_forward_trie(word)
 			if backward:
 				self.generate_backward_trie(word)
+
+	def get_word_set(self):
+		return self.word_set
 
 	def generate_forward_trie(self, word):
 		size = len(word)
