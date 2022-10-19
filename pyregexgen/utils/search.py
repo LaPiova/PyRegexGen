@@ -53,24 +53,30 @@ def precise_search(input:str, trie:Trie, partial=False, reverse=False, ignore_sp
 	else:
 		init = trie.c2t
 	i = 0
+	size = len(input)
 	if ignore_space:
 		while input[i] == ' ':
 			i += 1
 	if not (input[i] in init):
 		return (False, None)
+	ret = []
 	cur = init[input[i]]
-	for c in input[i + 1:]:
-		if not (c in cur.next):
-			if (ignore_space and (c == ' ')):
+	if partial:
+		if cur.isword:
+			ret.append((cur, i))
+	for j in range(i + 1, size):
+		if not (input[j] in cur.next):
+			if (ignore_space and (input[j] == ' ')):
 				continue
-			return (False, cur)
-		cur = cur.next[c]
+			return (not (not ret), ret)
+		cur = cur.next[input[j]]
 		if partial:
-			# TODO: If it stops at one word
-			# who is the prefix of another word in trie
 			if cur.isword:
-				return (True, cur)
-	return (cur.isword, cur)
+				ret.append((cur, j+i+1))
+		j += 1
+	if ((not partial) and cur.isword):
+		ret.append((cur, size - 1))
+	return (not (not ret), ret)
 
 def vague_search(s:str, trie:Trie, reverse=False, ignore_space=False, mode=0):
 	pass
